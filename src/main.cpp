@@ -145,8 +145,23 @@ string hexToDecimal (const string& strNumber) {
   double digits = strNumber.length() - 2;
   double decimalNum = 0;
   for (double index = 0; index < strNumber.length() - 2; index++) {
-     decimalNum += (hexCharToInt (strNumber[index+2]) * (pow (16, digits - index - 1)));
+     decimalNum += (hexCharToInt (strNumber[index+2]) *
+                   (pow (16, digits - index - 1)));
   } 
 
   return to_string (static_cast<int> (decimalNum));
+}
+
+string hexToBinary (const string& strNumber) {
+  string decimal, binary;
+  decimal = hexToDecimal (strNumber);
+  binary = decimalToBinary (decimal);
+  return binary;
+}
+
+string binaryToHex (const string& strNumber) {
+  string decimal, hex; 
+  decimal = binaryToDecimal (strNumber);
+  hex = decimalToHex (decimal); 
+  return hex; 
 }
