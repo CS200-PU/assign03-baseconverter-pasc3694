@@ -26,18 +26,32 @@ string hexToBinary (const string& strNumber);
 string binaryToHex (const string& strNumber); 
 
 int main () {
-  string num = "0xA9";
+  const string TITLE = "HEX-DEXIMAL-BINARY CONVERTER";
+  const string PROMPT = "Enter your string to convert";
+  const char DECIMAL = 'D';
+  const char BINARY = 'B';
+  const char HEX = 'H';
+  string cNum;
   string answer;
-  char first = 'F';
+  char type;
   int value;
 
-  value = hexCharToInt (first);
 
-  first = getBase (num);
+  printTitle (TITLE);
+  do {
+    cout << PROMPT;
+    cin >> cNum;
+    if ('q' != cNum [0]) {
+      type = getBase (cNum);
+      if (type) {
 
-  answer = hexToDecimal(num);
+      }
+      else if () {
 
-  cout << first << ": " << answer << endl; 
+      }
+
+    }
+  } while ('q' != cNum[0]);
   
   return EXIT_SUCCESS;
 }
