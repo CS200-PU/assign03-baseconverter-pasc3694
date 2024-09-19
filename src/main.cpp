@@ -26,7 +26,7 @@ string hexToBinary (const string& strNumber);
 string binaryToHex (const string& strNumber); 
 
 int main () {
-  string num = "169";
+  string num = "0xA9";
   string answer;
   char first = 'F';
   int value;
@@ -35,7 +35,7 @@ int main () {
 
   first = getBase (num);
 
-  answer = decimalToHex (num);
+  answer = hexToDecimal(num);
 
   cout << first << ": " << answer << endl; 
   
@@ -139,4 +139,14 @@ string decimalToHex (const string& strNumber) {
   }
 
   return hexNum;
+}
+
+string hexToDecimal (const string& strNumber) {
+  double digits = strNumber.length() - 2;
+  double decimalNum = 0;
+  for (double index = 0; index < strNumber.length() - 2; index++) {
+     decimalNum += (hexCharToInt (strNumber[index+2]) * (pow (16, digits - index - 1)));
+  } 
+
+  return to_string (static_cast<int> (decimalNum));
 }
