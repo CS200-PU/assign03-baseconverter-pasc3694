@@ -14,6 +14,7 @@
 using namespace std;
 
 int hexCharToInt (char hexDigit);
+char intToHexChar (int num);
 char getBase (const string& strNumber);
 string getNumber (const string& prompt);
 void printTitle (const string& myTitle); 
@@ -25,7 +26,7 @@ string hexToBinary (const string& strNumber);
 string binaryToHex (const string& strNumber); 
 
 int main () {
-  string num = "153";
+  string num = "169";
   string answer;
   char first = 'F';
   int value;
@@ -34,7 +35,7 @@ int main () {
 
   first = getBase (num);
 
-  answer = decimalToBinary (num);
+  answer = decimalToHex (num);
 
   cout << first << ": " << answer << endl; 
   
@@ -50,6 +51,17 @@ int hexCharToInt (char hexDigit) {
     value -= 48;
   }
   return value;
+}
+
+char intToHexChar (int num) {
+  char hex;
+  if (9 < num &&  16 > num) {
+    hex = static_cast<char> (num + 55);
+  }
+  else {
+    hex = static_cast<char> (num + 48);
+  }
+  return hex;
 }
 
 char getBase (const string &strNumber) {
@@ -113,5 +125,18 @@ string decimalToBinary (const string& strNumber) {
 }
 
 string decimalToHex (const string& strNumber) {
-  
+  string hexNum = "0x";
+  string hex = "";
+  int decimal = stoi (strNumber);
+
+  while (decimal != 0) {
+    hex += intToHexChar(decimal % 16);
+    decimal /= 16;
+  }
+
+  for (int index = hex.length(); -1 < index; index--) {
+    hexNum += hex[index];
+  }
+
+  return hexNum;
 }
