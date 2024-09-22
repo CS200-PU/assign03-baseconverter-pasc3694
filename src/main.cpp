@@ -25,6 +25,10 @@ string hexToDecimal (const string& strNumber);
 string hexToBinary (const string& strNumber); 
 string binaryToHex (const string& strNumber); 
 
+const char DECIMAL = 'D';
+const char BINARY = 'B';
+const char HEX = 'H';
+
 /**************************************************************************
  Function: 	 	main
 
@@ -41,9 +45,7 @@ int main () {
   const string DEC_CONV = "The decimal conversion is:";
   const string BIN_CONV = "The binary conversion is: ";
   const string HEX_CONV = "The hexadecimal conversion is: ";
-  const char DECIMAL = 'D';
-  const char BINARY = 'B';
-  const char HEX = 'H';
+  const char QUIT = 'q';
   string cNum;
   string answer;
   char type;
@@ -52,7 +54,7 @@ int main () {
   do {
     cout << PROMPT;
     cin >> cNum;
-    if ('q' != cNum [0]) {
+    if (QUIT != cNum [0]) {
       type = getBase (cNum);
       if (DECIMAL == type) {
         cout << BIN_CONV << decimalToBinary (cNum) << endl
@@ -70,7 +72,7 @@ int main () {
              << endl;
       }
     }
-  } while ('q' != cNum[0]);
+  } while (QUIT != cNum[0]);
   
   return EXIT_SUCCESS;
 }
@@ -125,12 +127,13 @@ char intToHexChar (int num) {
  Returned:	 	char - the char corrseponding to what base the string is
  *************************************************************************/
 char getBase (const string &strNumber) {
-  char base = 'D';
+  char base = DECIMAL;
+
   if ('0' == strNumber[0] && 'x' == strNumber[1]) {
-    base = 'H';
+    base = HEX;
   }
   else if ('0' == strNumber[0] && 'b' == strNumber[1]) {
-    base = 'B';
+    base = BINARY;
   }
   return base;
 }
@@ -180,6 +183,7 @@ void printTitle (const string &myTitle) {
 string binaryToDecimal (const string& strNumber) {
   double digits = strNumber.length() - 2;
   double decimalNum = 0;
+
   for (double index = 0; index < strNumber.length() - 2; index++) {
     if (strNumber[index + 2] == '1') {
      decimalNum += (pow (2, digits - index - 1));
