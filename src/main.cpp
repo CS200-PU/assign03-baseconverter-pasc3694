@@ -42,7 +42,7 @@ const char HEX = 'H';
 int main () {
   const string TITLE = "HEX-DEXIMAL-BINARY CONVERTER";
   const string PROMPT = "Enter your string to convert (q to quit): ";
-  const string DEC_CONV = "The decimal conversion is:";
+  const string DEC_CONV = "The decimal conversion is: ";
   const string BIN_CONV = "The binary conversion is: ";
   const string HEX_CONV = "The hexadecimal conversion is: ";
   const char QUIT = 'q';
@@ -189,6 +189,7 @@ string binaryToDecimal (const string& strNumber) {
      decimalNum += (pow (2, digits - index - 1));
     }
   } 
+  
 
   return to_string (static_cast<int> (decimalNum));
 }
@@ -221,6 +222,10 @@ string decimalToBinary (const string& strNumber) {
     binaryNum += binary[index];
   }
 
+  if (3 == binaryNum.length()) {
+    binaryNum += '0';
+  }
+
   return binaryNum;
 }
 
@@ -245,6 +250,10 @@ string decimalToHex (const string& strNumber) {
 
   for (int index = hex.length(); -1 < index; index--) {
     hexNum += hex[index];
+  }
+
+  if (3 == hexNum.length()) {
+    hexNum += '0';
   }
 
   return hexNum;
